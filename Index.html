@@ -1,257 +1,557 @@
-<!-- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      href="porttt.css",
-      rel="stylesheet"
-    />
-    <title> Portfolio</title>
-    <style>
-      @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap");
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About Me | Prarthana  </title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Lora:ital,wght@0,400;0,600;1,400&display=swap');
 
-:root {
-  --primary-color: #570909c6 ;
-  --primary-color-dark: #570909c6;
-  --secondary-color: #ca8a04;
-  --text-dark: #1f2937;
-  --text-light: #6b7280;
-  --extra-light: #faf5ff;
-  --max-width: 1200px;
-}
+    :root {
+      --red:     #6b0f0f;
+      --gold:    #ca8a04;
+      --gold-lt: #e5c882;
+      --bg:      #080204;
+      --card:    rgba(255,255,255,0.04);
+      --border:  rgba(255,255,255,0.08);
+      --beige:   #f0ebe0;
+      --dim:     rgba(240,235,224,0.6);
+      --max:     860px;
+    }
 
-* {
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
-}
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
 
-a {
-  text-decoration: none;
-}
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: var(--bg);
+      color: var(--beige);
+      min-height: 100vh;
+      /* Warm paper texture feel - different from main page */
+      background-image:
+        radial-gradient(ellipse 120% 80% at 50% 0%,   rgba(107,15,15,0.18) 0%, transparent 60%),
+        radial-gradient(ellipse 80%  60% at 0%  100%, rgba(202,138,4,0.07) 0%, transparent 55%),
+        linear-gradient(160deg, #0d0204 0%, #070103 50%, #0a0305 100%);
+    }
 
-body {
-  font-family: "Poppins", sans-serif;
-  background-image:radial-gradient(hsla(0, 59%, 29%, 0.604), rgb(0, 0, 0));
-}
+    /* ─── NAV (light bar — contrasts with dark main page nav) ─── */
+    nav {
+      position: fixed; top: 0; width: 100%; z-index: 99;
+      background: rgba(15,4,4,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(202,138,4,0.18);
+    }
+    .nav__content {
+      max-width: 1100px; margin: auto;
+      padding: 1rem 2rem;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .logo a {
+      font-size: 1.5rem; font-weight: 800;
+      background: linear-gradient(135deg, var(--beige) 30%, var(--gold));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      text-decoration: none; letter-spacing: 1px;
+    }
+    nav ul { display: flex; gap: 0.3rem; list-style: none; }
+    nav ul li a {
+      text-decoration: none; color: var(--dim);
+      font-size: 0.84rem; font-weight: 500;
+      padding: 0.42rem 1rem; border-radius: 20px;
+      border: 1px solid transparent; transition: 0.25s;
+    }
+    nav ul li a:hover, nav ul li a.active {
+      color: var(--gold-lt);
+      border-color: rgba(202,138,4,0.4);
+      background: rgba(202,138,4,0.07);
+    }
 
-nav {
-  width: 100%;
-  position: fixed;
-  top: 0;
-  left: 0;
-  background-color: #ffffff;
-  z-index: 99;
-}
+    /* ─── PAGE WRAP ─── */
+    .page {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 100px 1.5rem 4rem;
+    }
 
-.nav__content {
-  max-width: var(--max-width);
-  margin: auto;
-  padding: 1.5rem 1rem;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
+    /* ─── NAV AVATAR ─── */
+    .nav-avatar {
+      width: 36px; height: 36px; border-radius: 50%;
+      border: 2px solid var(--gold); overflow: hidden; flex-shrink: 0;
+      background: linear-gradient(135deg, var(--red), rgba(202,138,4,0.3));
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.65rem; font-weight: 800; color: var(--gold-lt);
+    }
+    .nav-avatar img { width:100%; height:100%; object-fit:cover; object-position:top; }
 
-nav .logo a {
-  font-size: 1.5rem;
-  font-weight: 600;
-  color: var(--primary-color);
-  transition: 0.3s;
-}
-nav .logo a:hover {
-  color: var(--primary-color-dark);
-}
+    /* ─── ABOUT HERO ─── */
+    .about-hero {
+      display: grid; grid-template-columns: auto 1fr; gap: 3rem;
+      align-items: center; margin-bottom: 3rem;
+      padding: 2rem; background: var(--card);
+      border: 1px solid var(--border); border-radius: 20px;
+    }
 
-nav .checkbox {
-  display: none;
-}
+    .about-photo-ring {
+      position: relative; width: 200px; height: 200px; flex-shrink: 0;
+    }
+    .about-photo-ring::before {
+      content: ''; position: absolute; inset: -4px; border-radius: 50%;
+      background: conic-gradient(var(--gold) 0deg, transparent 160deg, var(--red) 360deg);
+      animation: spin 8s linear infinite; z-index: 0;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .about-photo-inner {
+      position: absolute; inset: 4px; border-radius: 50%;
+      overflow: hidden; background: #1a0808; z-index: 1;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .about-photo-inner img {
+      width: 100%; height: 100%; object-fit: cover; object-position: top center;
+    }
 
-nav input {
-  display: none;
-}
-nav .checkbox i {
-  font-size: 2rem;
-  color: var(--primary-color);
-  cursor: pointer;
-}
+    .about-intro { display: flex; flex-direction: column; gap: 0.8rem; }
 
-ul {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  list-style: none;
-  transition: left 0.3s;
-}
+    .about-intro .pre {
+      font-size: 0.8rem; letter-spacing: 2px; text-transform: uppercase;
+      color: var(--gold); font-weight: 600;
+    }
+    .about-name {
+      font-size: 2.2rem; font-weight: 800; line-height: 1.1; color: var(--beige);
+    }
+    .about-name span {
+      background: linear-gradient(135deg, var(--gold), #f0a500);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    .about-role-badge {
+      display: inline-block; background: rgba(107,15,15,0.45);
+      border: 1px solid rgba(202,138,4,0.35); color: var(--gold-lt);
+      font-size: 0.8rem; font-weight: 600; padding: 0.3rem 1rem;
+      border-radius: 20px; width: fit-content;
+    }
+    .about-one-liner {
+      font-family: 'Lora', serif; font-size: 0.9rem;
+      color: var(--dim); line-height: 1.7; max-width: 420px;
+    }
+    .about-quick-links { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+    .aqlink {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      font-size: 0.78rem; font-weight: 600; text-decoration: none;
+      color: var(--dim); border: 1px solid var(--border);
+      padding: 0.35rem 0.9rem; border-radius: 20px; transition: 0.25s;
+    }
+    .aqlink:hover { color: var(--gold-lt); border-color: rgba(202,138,4,0.4); background: rgba(202,138,4,0.07); }
+    .aqlink-primary {
+      background: linear-gradient(135deg, var(--red), #8b1515);
+      color: var(--beige) !important; border-color: transparent !important;
+    }
+    .aqlink-primary:hover { transform: translateY(-2px); box-shadow: 0 4px 16px rgba(107,15,15,0.4); }
 
-ul li a {
-  padding: 0.5rem 1rem;
-  border: 2px solid transparent;
-  text-decoration: none;
-  font-weight: 600;
-  color: var(--text-dark);
-  transition: 0.3s;
-}
+    /* ─── SECTION LABEL ─── */
+    .sec-label {
+      display: flex; align-items: center; gap: 0.7rem;
+      font-size: 0.72rem; font-weight: 700; letter-spacing: 3px;
+      text-transform: uppercase; color: var(--gold);
+      margin-bottom: 1rem;
+    }
+    .sec-label::after {
+      content: ''; flex: 1; height: 1px;
+      background: linear-gradient(90deg, rgba(202,138,4,0.4), transparent);
+    }
 
-ul li a:hover {
-  border-top-color: var(--secondary-color);
-  border-bottom-color: var(--secondary-color);
-  color: var(--secondary-color);
-}
+    /* ─── TRAIT CARDS (personality) ─── */
+    .traits-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.9rem;
+      margin-bottom: 2.5rem;
+    }
+    .trait-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px; padding: 1.2rem 1rem;
+      text-align: center; transition: 0.3s;
+      position: relative; overflow: hidden;
+    }
+    .trait-card::before {
+      content: '';
+      position: absolute; bottom: 0; left: 0; right: 0; height: 2px;
+      background: linear-gradient(90deg, var(--red), var(--gold));
+      transform: scaleX(0); transform-origin: center;
+      transition: transform 0.3s;
+    }
+    .trait-card:hover { border-color: rgba(202,138,4,0.35); transform: translateY(-3px); }
+    .trait-card:hover::before { transform: scaleX(1); }
 
-.section {
-  background-color: var(--extra-light);
-}
+    .trait-icon { font-size: 1.8rem; margin-bottom: 0.5rem; }
+    .trait-title { font-size: 0.83rem; font-weight: 700; color: var(--beige); margin-bottom: 0.25rem; }
+    .trait-desc { font-size: 0.73rem; color: var(--dim); line-height: 1.5; }
 
-.section__container {
-  min-height: 100vh;
-  max-width: var(--max-width);
-  margin: auto;
-  padding: 1rem;
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 4rem;
-}
+    /* ─── ABOUT BIO CARD ─── */
+    .bio-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--gold);
+      border-radius: 0 14px 14px 0;
+      padding: 2rem 2rem 2rem 1.8rem;
+      margin-bottom: 2.5rem;
+      position: relative;
+    }
+    .bio-card .quote-icon {
+      position: absolute; top: 1rem; right: 1.5rem;
+      font-size: 4rem; line-height: 1;
+      color: rgba(202,138,4,0.08);
+      font-family: Georgia, serif;
+      pointer-events: none;
+    }
+    .bio-card p {
+      font-family: 'Lora', serif;
+      font-size: 0.95rem; line-height: 1.9;
+      color: rgba(240,235,224,0.82);
+      margin-bottom: 1rem;
+    }
+    .bio-card p:last-child { margin-bottom: 0; }
+    .bio-card strong { color: var(--gold-lt); font-style: italic; font-weight: 600; }
 
-.content {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
+    /* ─── QUICK FACTS ─── */
+    .facts-row {
+      display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.75rem;
+      margin-bottom: 2.5rem;
+    }
+    .fact-item {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 10px; padding: 1rem 1.2rem;
+      display: flex; align-items: center; gap: 0.9rem;
+      transition: 0.25s;
+    }
+    .fact-item:hover { border-color: rgba(202,138,4,0.3); }
+    .fact-icon {
+      width: 36px; height: 36px; border-radius: 8px; flex-shrink: 0;
+      background: linear-gradient(135deg, rgba(107,15,15,0.5), rgba(202,138,4,0.15));
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1rem;
+    }
+    .fact-label { font-size: 0.7rem; color: var(--dim); letter-spacing: 1px; text-transform: uppercase; }
+    .fact-value { font-size: 0.88rem; font-weight: 600; color: var(--beige); }
 
-.subtitle {
-  letter-spacing: 2px;
-  color: var(--text-light);
-  font-weight: 600;
-  margin-bottom: 0.5rem;
-}
+    /* ─── RESUME SECTION ─── */
+    .resume-section {
+      background: linear-gradient(135deg, rgba(107,15,15,0.25), rgba(202,138,4,0.08));
+      border: 1px solid rgba(202,138,4,0.25);
+      border-radius: 16px; padding: 2.5rem 2rem;
+      text-align: center;
+    }
+    .resume-section h3 {
+      font-size: 1.3rem; font-weight: 700; color: var(--beige); margin-bottom: 0.5rem;
+    }
+    .resume-section p {
+      font-size: 0.88rem; color: var(--dim); margin-bottom: 1.8rem; line-height: 1.6;
+    }
+    .resume-btn-row { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
 
-.title {
-  font-size: 2.5rem;
-  font-weight: 400;
-  line-height: 3rem;
-  color: var(--text-dark);
-  margin-bottom: 1rem;
-}
+    .rbtn {
+      display: inline-flex; align-items: center; gap: 0.55rem;
+      padding: 0.8rem 2rem; border-radius: 8px;
+      font-family: 'Poppins', sans-serif; font-size: 0.88rem; font-weight: 600;
+      cursor: pointer; transition: 0.3s; text-decoration: none; border: none;
+    }
+    .rbtn-primary {
+      background: linear-gradient(135deg, var(--red), #8b1515);
+      color: var(--beige);
+      box-shadow: 0 4px 18px rgba(107,15,15,0.4);
+    }
+    .rbtn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(107,15,15,0.55); }
 
-.title span {
-  font-weight: 600;
-}
+    .rbtn-outline {
+      background: transparent; color: var(--gold-lt);
+      border: 1.5px solid rgba(202,138,4,0.45);
+    }
+    .rbtn-outline:hover {
+      background: rgba(202,138,4,0.1); border-color: var(--gold);
+      transform: translateY(-2px);
+    }
 
-.description {
-  line-height: 1.5rem;
-  color: var(--text-light);
-  margin-bottom: 2rem;
-}
+    /* ─── PDF EMBED ─── */
+    .pdf-embed-wrap {
+      margin-top: 1.5rem;
+      border: 1px solid rgba(202,138,4,0.3);
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 8px 40px rgba(0,0,0,0.45);
+    }
 
-.action__btns {
-  display: flex;
-  gap: 1rem;
-}
+    .pdf-embed-header {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0.9rem 1.4rem;
+      background: linear-gradient(135deg, rgba(107,15,15,0.5), rgba(202,138,4,0.12));
+      border-bottom: 1px solid rgba(202,138,4,0.2);
+    }
 
-.action__btns button {
-  font-size: 1rem;
-  font-weight: 600;
-  letter-spacing: 2px;
-  padding: 1rem 2rem;
-  outline: none;
-  border: 2px solid var(--primary-color);
-  border-radius: 10px;
-  transition: 0.3s;
-  cursor: pointer;
-}
+    .pdf-embed-title {
+      font-size: 0.88rem; font-weight: 700; color: var(--beige);
+      display: flex; align-items: center; gap: 0.6rem;
+    }
+    .pdf-embed-title i { color: var(--gold); font-size: 1.1rem; }
 
-.resume{
-  background-color: var(--primary-color);
-  color: hsl(0, 2%, 73%);;
-}
+    .pdf-dl-btn {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      font-size: 0.78rem; font-weight: 600;
+      color: var(--gold-lt); text-decoration: none;
+      border: 1px solid rgba(202,138,4,0.4);
+      padding: 0.35rem 0.9rem; border-radius: 20px;
+      transition: 0.25s;
+    }
+    .pdf-dl-btn:hover { background: rgba(202,138,4,0.15); border-color: var(--gold); }
 
-.resume:hover {
-  background-color: hsl(0, 2%, 73%) ;
-}
+    .pdf-frame-wrap { position: relative; background: #f4f4f4; }
 
-.portfolio {
-  color: var(--primary-color);
-}
+    .pdf-frame {
+      width: 100%; height: 820px;
+      border: none; display: block;
+    }
 
-.portfolio:hover {
-  background-color: var(--primary-color-dark);
-  color: hsl(0, 2%, 73%);
-}
-@media (width < 750px) {
-  nav .checkbox {
-    display: block;
-  }
+    .pdf-fallback {
+      display: none;
+      flex-direction: column; align-items: center;
+      justify-content: center; text-align: center;
+      padding: 3rem; background: rgba(8,2,2,0.8);
+      color: var(--dim);
+    }
+    .pdf-fallback p { font-size: 0.9rem; }
 
-  ul {
-    position: absolute;
-    width: 100%;
-    height: calc(100vh - 85px);
-    left: -100%;
-    top: 85px;
-    background-color: var(--extra-light);
-    flex-direction: column;
-    justify-content: center;
-    gap: 3rem;
-  }
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 700px) {
+      .about-hero { grid-template-columns: 1fr; text-align: center; justify-items: center; gap: 1.5rem; }
+      .about-photo-ring { width: 160px; height: 160px; }
+      .about-one-liner { margin: 0 auto; }
+      .about-quick-links { justify-content: center; }
+    }
+    @media (max-width: 640px) {
+      .traits-grid { grid-template-columns: repeat(2, 1fr); }
+      .facts-row { grid-template-columns: 1fr; }
+      .pdf-frame { height: 500px; }
+    }
+    @media (max-width: 400px) {
+      .traits-grid { grid-template-columns: 1fr; }
+      .pdf-frame { height: 400px; }
+    }
+  </style>
+</head>
+<body>
 
-  nav #check:checked ~ ul {
-    left: 0;
-  }
-
-  ul li a {
-    font-size: 1.25rem;
-  }
-
-  .section__container {
-    padding: 10rem 1rem 5rem 1rem;
-    text-align: center;
-    grid-template-columns: repeat(1, 1fr);
-  }
-
-  .action__btns {
-    margin: auto;
-  }
-}
-
-
-    </style>
-  </head>
-  <body>
-    <nav>
-      <div class="nav__content">
-        <div class="logo"><a href="#">Pratzz!</a></div>
-        <label for="check" class="checkbox">
-          <i class="ri-menu-line"></i>
-        </label>
-        <input type="checkbox" name="check" id="check" />
-        <ul>
-            <a href="Home.html">About</a>
-            <a href="project.html">Projects</a>
-            <a href="Contact-info.html">Contact-Info</a>
-        </ul>
+<nav>
+  <div class="nav__content">
+    <div style="display:flex;align-items:center;gap:0.8rem;">
+      <div class="nav-avatar">
+        <img src="prarthana.jpg" alt="P"
+             onerror="this.style.display='none';this.parentElement.textContent='PB';" />
       </div>
-    </nav>
-    <section class="section">
-      <div class="section__container">
-        <div class="content">s
-          <h1 class="title">
-             <span>Prarthana<br /></span> Fullstack Developer
-          </h1>
-          <p class="description">
-            Welcome to my  portfolio! I'm Prarthana, I am enthusiastic about leveraging my skills and knowledge to embark on a career as a full-stack developer.
-             With a passion for technology and a dedication to continuous learning, I am committed to contributing to innovative projects and solving complex problems in the realm of software development.
+      <div class="logo"><a href="porttt.html">Pratzz!</a></div>
+    </div>
+    <ul>
+      <li><a href="home.html" class="active">About</a></li>
+      <li><a href="porttt.html#experience">Experience</a></li>
+      <li><a href="project.html">Projects</a></li>
+      <li><a href="Contact-info.html">Contact</a></li>
+    </ul>
+  </div>
+</nav>
 
-            During my academic journey, I acquired a solid foundation in programming languages such as JavaScript, Python, HTML, and CSS with react and django frameworks laying the groundwork for my transition into full-stack development. 
-            
-          <div class="action__btns">
-            <a href="file:///C:/Users/User/Pictures/resuoutput.pdf"><button class="resume">Resume</button> </a>
-            <a href="Home.html"><button class="portfolio">Portfolio</button></a>
-          </div>
-        </div>
+<div class="page">
+
+  <!-- ── HERO: Big Photo + Intro ── -->
+  <div class="about-hero">
+    <div class="about-photo-ring">
+      <div class="about-photo-inner">
+        <img src="prarthana.jpg" alt="Prarthana  "
+             onerror="this.style.display='none';document.getElementById('aboutFb').style.display='flex';" />
+        <div id="aboutFb" style="display:none;width:100%;height:100%;align-items:center;justify-content:center;font-size:3.5rem;font-weight:800;background:linear-gradient(135deg,var(--gold),var(--red));-webkit-background-clip:text;-webkit-text-fill-color:transparent;">PB</div>
       </div>
-    </section>
-  </body>
-</html> -->
+    </div>
+    <div class="about-intro">
+      <div class="pre">👋 Hello, I'm</div>
+      <h1 class="about-name">Prarthana <span> </span></h1>
+      <div class="about-role-badge">AI / ML Developer &nbsp;·&nbsp; B.Tech IT Graduate</div>
+      <p class="about-one-liner">
+        Passionate developer building AI-driven solutions that solve real-world problems —
+        from LLM workflows to deep learning systems.
+      </p>
+      <div class="about-quick-links">
+        <a href="mailto:prarthanabalar@gmail.com" class="aqlink"><i class="fas fa-envelope"></i> Email</a>
+        <a href="https://www.linkedin.com/in/prarthana-balar/" target="_blank" class="aqlink"><i class="fab fa-linkedin"></i> LinkedIn</a>
+        <a href="https://github.com/Prart-hana" target="_blank" class="aqlink"><i class="fab fa-github"></i> GitHub</a>
+        <a href="prarthana_resume.pdf" download class="aqlink aqlink-primary"><i class="fas fa-download"></i> Resume</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Personality Traits -->
+  <div class="sec-label">My personality</div>
+  <div class="traits-grid">
+    <div class="trait-card">
+      <div class="trait-icon">🔍</div>
+      <div class="trait-title">Curious Learner</div>
+      <div class="trait-desc">Always exploring new technologies and concepts beyond the classroom.</div>
+    </div>
+    <div class="trait-card">
+      <div class="trait-icon">💡</div>
+      <div class="trait-title">Problem Solver</div>
+      <div class="trait-desc">I enjoy breaking down complex problems into simple, elegant solutions.</div>
+    </div>
+    <div class="trait-card">
+      <div class="trait-icon">🤖</div>
+      <div class="trait-title">AI Enthusiast</div>
+      <div class="trait-desc">Passionate about building AI-driven systems that create real impact.</div>
+    </div>
+    <div class="trait-card">
+      <div class="trait-icon">📈</div>
+      <div class="trait-title">Growth Mindset</div>
+      <div class="trait-desc">Structured learning and hands-on practice are my superpowers.</div>
+    </div>
+    <div class="trait-card">
+      <div class="trait-icon">🤝</div>
+      <div class="trait-title">Team Player</div>
+      <div class="trait-desc">I collaborate well and communicate clearly with cross-functional teams.</div>
+    </div>
+    <div class="trait-card">
+      <div class="trait-icon">🎯</div>
+      <div class="trait-title">Goal-Oriented</div>
+      <div class="trait-desc">Focused on building meaningful applications with measurable outcomes.</div>
+    </div>
+  </div>
+
+  <!-- Bio -->
+  <div class="sec-label">My story</div>
+  <div class="bio-card">
+    <div class="quote-icon">"</div>
+    <p>
+      I am a <strong>passionate and curious software developer</strong> with a strong interest in building practical and
+      impactful solutions. I enjoy learning new technologies and continuously improving my problem-solving skills
+      through coding, projects, and real-world challenges.
+    </p>
+    <p>
+      I have experience working with technologies such as <strong>Java, Python, JavaScript, n8n and cloud tools</strong>.
+      I particularly enjoy exploring <strong>AI-driven solutions</strong> that can solve real problems — from
+      designing agentic workflows to building conversational AI systems.
+    </p>
+    <p>
+      I am a <strong>persistent learner</strong> who believes in structured learning, hands-on practice, and
+      continuous improvement. My goal is to grow as a developer by building meaningful applications, contributing
+      to innovative projects, and creating technology that makes everyday tasks easier.
+    </p>
+    <p>
+      Beyond coding, I focus on improving my <strong>logical thinking</strong>, exploring new ideas, and staying
+      updated with modern software development practices.
+    </p>
+  </div>
+
+  <!-- Quick Facts -->
+  <div class="sec-label">Quick facts</div>
+  <div class="facts-row">
+    <div class="fact-item">
+      <div class="fact-icon">🎓</div>
+      <div>
+        <div class="fact-label">Degree</div>
+        <div class="fact-value">B.Tech — Information Technology</div>
+      </div>
+    </div>
+    <div class="fact-item">
+      <div class="fact-icon">📍</div>
+      <div>
+        <div class="fact-label">Location</div>
+        <div class="fact-value">Tamil Nadu, India</div>
+      </div>
+    </div>
+    <div class="fact-item">
+      <div class="fact-icon">💼</div>
+      <div>
+        <div class="fact-label">Current Role</div>
+        <div class="fact-value">AI / ML Trainee @ Genzi.ai</div>
+      </div>
+    </div>
+    <div class="fact-item">
+      <div class="fact-icon">🌐</div>
+      <div>
+        <div class="fact-label">Languages</div>
+        <div class="fact-value">Tamil &amp; English</div>
+      </div>
+    </div>
+    <div class="fact-item">
+      <div class="fact-icon">⚡</div>
+      <div>
+        <div class="fact-label">Focus Area</div>
+        <div class="fact-value">AI Automation &amp; LLM Systems</div>
+      </div>
+    </div>
+    <div class="fact-item">
+      <div class="fact-icon">✨</div>
+      <div>
+        <div class="fact-label">Status</div>
+        <div class="fact-value">Open to Opportunities</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Resume Section -->
+  <div class="sec-label">My resume</div>
+  <div class="resume-section">
+    <h3>📄 My Resume</h3>
+    <p>
+      A full overview of my experience, education, skills, and projects.
+    </p>
+    <div class="resume-btn-row">
+      <a href="prarthana_resume.pdf" download class="rbtn rbtn-primary">
+        <i class="fas fa-download"></i> Download Resume
+      </a>
+      <a href="porttt.html" class="rbtn rbtn-outline">
+        <i class="fas fa-eye"></i> View Full Portfolio
+      </a>
+    </div>
+  </div>
+
+  <!-- Embedded Resume PDF Viewer -->
+  <div class="pdf-embed-wrap">
+    <div class="pdf-embed-header">
+      <span class="pdf-embed-title"><i class="fas fa-file-pdf"></i> Prarthana   — Resume</span>
+      <a href="prarthana_resume.pdf" download class="pdf-dl-btn">
+        <i class="fas fa-download"></i> Download
+      </a>
+    </div>
+    <div class="pdf-frame-wrap">
+      <iframe
+        src="prarthana_resume.pdf"
+        class="pdf-frame"
+        title="Prarthana   Resume"
+      ></iframe>
+      <!-- Fallback for browsers that block iframe PDF -->
+      <div class="pdf-fallback" id="pdfFallback">
+        <i class="fas fa-file-pdf" style="font-size:3rem;color:#6b0f0f;margin-bottom:1rem;"></i>
+        <p>Your browser doesn't support embedded PDFs.</p>
+        <a href="prarthana_resume.pdf" download class="rbtn rbtn-primary" style="margin-top:0.5rem;">
+          <i class="fas fa-download"></i> Download Resume Instead
+        </a>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  // Subtle scroll-reveal
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.style.opacity = '1';
+        e.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.trait-card, .bio-card, .fact-item, .resume-section').forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(20px)';
+    el.style.transition = 'opacity 0.5s ease, transform 0.5s ease, border-color 0.3s';
+    observer.observe(el);
+  });
+</script>
+
+<script src="photo-setup.js"></script>
+</body>
+</html>
