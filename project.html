@@ -1,98 +1,334 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <style>
-        header {
-            margin: 0;
-            font-size: 24px; 
-            text-align: center;
-            padding: 20px 0; 
-            background-color:hsl(0, 2%, 73%);
-            color: #570909c6;
-            background: size 200px;
-            background-position: center;
-            margin-bottom: 30px;
-            font-size:   40px ;
-            font-weight: bold;
-            text-transform: uppercase;
-        }
-        body a{
-            text-decoration: none;
-          
-        }
-        .button{
-           
-           background-color:hsl(0, 2%, 73%);
-            font-size: 1rem;
-            font-weight: 600;
-            letter-spacing: 1px;
-            font-family: 'Courier New', Courier, monospace;
-            padding: 1rem 2rem;
-            outline: none;
-            border: 2px solid var;
-            border-radius: 10px;
-            transition: 0.3s;
-            cursor: pointer;
-            text-align: center;
-            align-items: center;
-          }
-          .box1,.box2,.box3{
-           width:400px;
-           height:200px;
-           box-sizing: border-box;
-           margin: 20px;
-           background-color:  #030303b6;
-           align-items: center;
-           margin-bottom:30px;
-           justify-content: center;
-            display: flex;
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Projects | Prarthana</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Fira+Code:wght@400;500;600&display=swap');
 
-          }
-         
-          
-          .container{
-            width: 100%;
-            height:auto;
-            display: flex;
-            flex-direction:column;
-            justify-content:space-around;
-           align-items: center;
-             
+    :root {
+      --red:    #6b0f0f;
+      --gold:   #ca8a04;
+      --glt:    #e5c882;
+      --bg:     #050a08;
+      --beige:  #e8f0ec;
+      --dim:    rgba(232,240,236,0.55);
+      --max:    900px;
+    }
 
-          }
-          body{
-            background-image:radial-gradient(hsla(0, 59%, 29%, 0.604), rgb(0, 0, 0));
-          }
-          
-    </style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      min-height: 100vh;
+      color: var(--beige);
+      /* Distinct: green-tinted dark — feels like a code/terminal environment */
+      background:
+        radial-gradient(ellipse 90% 60% at 10% 20%, rgba(20,80,40,0.2) 0%, transparent 60%),
+        radial-gradient(ellipse 70% 50% at 90% 80%, rgba(107,15,15,0.15) 0%, transparent 55%),
+        linear-gradient(160deg, #030a05 0%, #040807 60%, #070404 100%);
+    }
+
+    /* ─── NAV ─── */
+    nav {
+      position: fixed; top: 0; width: 100%; z-index: 99;
+      background: rgba(3,8,5,0.92);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(20,100,50,0.25);
+    }
+    .nav__content {
+      max-width: 1100px; margin: auto;
+      padding: 1rem 2rem;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .logo a {
+      font-family: 'Fira Code', monospace;
+      font-size: 1.3rem; font-weight: 600;
+      color: #7effa0; text-decoration: none; letter-spacing: 1px;
+    }
+    .nav-avatar {
+      width: 34px; height: 34px; border-radius: 50%;
+      border: 2px solid #28c840; overflow: hidden; flex-shrink: 0;
+      background: #0d2018;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.6rem; font-weight: 800; color: #7effa0;
+    }
+    .nav-avatar img { width:100%; height:100%; object-fit:cover; object-position:top; }
+    nav ul { display: flex; gap: 0.3rem; list-style: none; }
+    nav ul li a {
+      text-decoration: none; color: var(--dim);
+      font-size: 0.84rem; font-weight: 500;
+      padding: 0.42rem 1rem; border-radius: 6px;
+      border: 1px solid transparent; transition: 0.25s;
+      font-family: 'Fira Code', monospace; font-size: 0.78rem;
+    }
+    nav ul li a:hover, nav ul li a.active {
+      color: #7effa0; border-color: rgba(100,220,140,0.35);
+      background: rgba(50,180,90,0.08);
+    }
+
+    /* ─── TERMINAL HEADER ─── */
+    .terminal-bar {
+      max-width: var(--max); margin: 0 auto;
+      padding: 105px 1.5rem 0;
+    }
+    .terminal-window {
+      background: rgba(0,10,4,0.85);
+      border: 1px solid rgba(50,180,80,0.25);
+      border-radius: 10px; overflow: hidden;
+      margin-bottom: 3rem;
+    }
+    .terminal-titlebar {
+      background: rgba(10,25,15,0.9);
+      padding: 0.65rem 1rem;
+      display: flex; align-items: center; gap: 0.5rem;
+      border-bottom: 1px solid rgba(50,180,80,0.15);
+    }
+    .t-dot { width: 10px; height: 10px; border-radius: 50%; }
+    .t-red { background: #ff5f57; }
+    .t-yellow { background: #febc2e; }
+    .t-green { background: #28c840; }
+    .terminal-titlebar span {
+      margin-left: auto; font-family: 'Fira Code', monospace;
+      font-size: 0.72rem; color: rgba(150,220,170,0.5);
+    }
+    .terminal-body { padding: 1.2rem 1.5rem; }
+    .terminal-body .t-line {
+      font-family: 'Fira Code', monospace; font-size: 0.82rem;
+      margin-bottom: 0.4rem; line-height: 1.5;
+    }
+    .t-prompt { color: #28c840; }
+    .t-cmd   { color: #a8e6c0; }
+    .t-out   { color: rgba(200,240,220,0.55); padding-left: 1.4rem; }
+    .t-cursor {
+      display: inline-block; width: 8px; height: 14px;
+      background: #28c840; vertical-align: middle;
+      animation: cur 1s step-end infinite;
+    }
+    @keyframes cur { 50% { opacity: 0; } }
+
+    /* ─── SECTION LABEL ─── */
+    .sec-label {
+      font-family: 'Fira Code', monospace;
+      font-size: 0.72rem; color: #5dba7d; letter-spacing: 2px;
+      margin-bottom: 1.5rem;
+      display: flex; align-items: center; gap: 0.7rem;
+    }
+    .sec-label::after {
+      content: ''; flex: 1; height: 1px;
+      background: linear-gradient(90deg, rgba(50,180,80,0.3), transparent);
+    }
+
+    /* ─── MAIN WRAP ─── */
+    .page { max-width: var(--max); margin: 0 auto; padding: 0 1.5rem 4rem; }
+
+    /* ─── PROJECT CARDS ─── */
+    .projects-stack { display: flex; flex-direction: column; gap: 1.8rem; }
+
+    .proj-card {
+      background: rgba(5,18,10,0.8);
+      border: 1px solid rgba(40,160,70,0.18);
+      border-radius: 14px; overflow: hidden;
+      transition: border-color 0.3s, transform 0.3s;
+    }
+    .proj-card:hover {
+      border-color: rgba(202,138,4,0.45);
+      transform: translateX(6px);
+    }
+
+    /* colour accent bar on left */
+    .proj-card.card-1 { border-left: 3px solid #28c840; }
+    .proj-card.card-2 { border-left: 3px solid var(--gold); }
+
+    .proj-inner { padding: 2rem; }
+
+    .proj-meta {
+      display: flex; justify-content: space-between;
+      align-items: flex-start; gap: 1rem; margin-bottom: 1.2rem; flex-wrap: wrap;
+    }
+
+    .proj-num {
+      font-family: 'Fira Code', monospace; font-size: 0.7rem;
+      color: #28c840; letter-spacing: 2px;
+    }
+    .proj-title {
+      font-size: 1.08rem; font-weight: 700; color: var(--beige);
+      line-height: 1.4; margin-bottom: 0.2rem;
+    }
+
+    .proj-gh {
+      display: inline-flex; align-items: center; gap: 0.45rem;
+      font-family: 'Fira Code', monospace; font-size: 0.75rem;
+      color: #7effa0; text-decoration: none;
+      border: 1px solid rgba(100,220,140,0.3);
+      padding: 0.35rem 0.9rem; border-radius: 6px; transition: 0.25s;
+      white-space: nowrap;
+    }
+    .proj-gh:hover {
+      background: rgba(50,180,80,0.1);
+      border-color: rgba(100,220,140,0.6);
+    }
+
+    .proj-tech {
+      display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 1.2rem;
+    }
+    .tech-chip {
+      font-family: 'Fira Code', monospace; font-size: 0.7rem;
+      padding: 0.22rem 0.7rem; border-radius: 4px;
+      background: rgba(20,60,30,0.7); border: 1px solid rgba(50,180,80,0.2);
+      color: rgba(200,240,220,0.75);
+    }
+
+    .proj-divider {
+      height: 1px; margin: 1rem 0;
+      background: linear-gradient(90deg, rgba(50,180,80,0.2), transparent);
+    }
+
+    .proj-points { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
+    .proj-points li {
+      font-size: 0.84rem; color: rgba(232,240,236,0.72);
+      padding-left: 1.3rem; position: relative; line-height: 1.6;
+    }
+    .proj-points li::before {
+      content: '//'; position: absolute; left: 0;
+      font-family: 'Fira Code', monospace; font-size: 0.7rem;
+      color: #28c840; font-weight: 600;
+    }
+
+    @media (max-width: 600px) {
+      .proj-meta { flex-direction: column; }
+      .proj-gh { width: fit-content; }
+    }
+  </style>
 </head>
-<header>
-    Project Section
-</header>
 <body>
-    <div class="container">
-        <div class="box1">
-            <a href="https://github.com/Prart-hana/lib-management.git"> <button class="button">Library Management</button> </a>
-    
 
-        </div><hr>
-        <div class="box2">
-            
-            <a href="https://github.com/Prart-hana/WD/upload"> <button class="button">Tic-Tac-Toe</button> </a>
-
-            
-        </div>
-        <div class="box3">
-            <a href=""><button class="button">E-commerce website</button></a>
-
-           
-        </div>
-
-
-
+<nav>
+  <div class="nav__content">
+    <div style="display:flex;align-items:center;gap:0.75rem;">
+      <div class="nav-avatar">
+        <img src="prarthana.jpg" alt="P"
+             onerror="this.style.display='none';this.parentElement.textContent='PB';" />
+      </div>
+      <div class="logo"><a href="porttt.html">~/Pratzz</a></div>
     </div>
+    <ul>
+      <li><a href="home.html">about</a></li>
+      <li><a href="porttt.html#experience">work</a></li>
+      <li><a href="project.html" class="active">projects</a></li>
+      <li><a href="Contact-info.html">contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- Terminal Header -->
+<div class="terminal-bar">
+  <div class="terminal-window">
+    <div class="terminal-titlebar">
+      <div class="t-dot t-red"></div>
+      <div class="t-dot t-yellow"></div>
+      <div class="t-dot t-green"></div>
+      <span>prarthana@portfolio ~ projects</span>
+    </div>
+    <div class="terminal-body">
+      <div class="t-line"><span class="t-prompt">$ </span><span class="t-cmd">ls ./projects</span></div>
+      <div class="t-line t-out">📁 knee-osteoarthritis-detection/</div>
+      <div class="t-line t-out">📁 civicroute-complaint-router/</div>
+      <div class="t-line"><span class="t-prompt">$ </span><span class="t-cmd">cat README.md</span></div>
+      <div class="t-line t-out">Here are the things I've built — featuring AI, deep learning & NLP.</div>
+      <div class="t-line"><span class="t-prompt">$ </span><span class="t-cursor"></span></div>
+    </div>
+  </div>
+</div>
+
+<!-- Projects -->
+<div class="page">
+  <div class="sec-label">// featured projects</div>
+
+  <div class="projects-stack">
+
+    <!-- Project 1 -->
+    <div class="proj-card card-1">
+      <div class="proj-inner">
+        <div class="proj-meta">
+          <div>
+            <div class="proj-num">PROJECT_01</div>
+            <div class="proj-title">Automated Multi-Stage Assessment of Knee<br/>Osteoarthritis Severity using Deep Learning</div>
+          </div>
+          <a href="https://github.com/Prart-hana/Final_Year_Project" target="_blank" class="proj-gh">
+            <i class="fab fa-github"></i> view repo
+          </a>
+        </div>
+        <div class="proj-tech">
+          <span class="tech-chip">Python</span>
+          <span class="tech-chip">CNN</span>
+          <span class="tech-chip">MobileViT</span>
+          <span class="tech-chip">Deep Learning</span>
+          <span class="tech-chip">Medical Imaging</span>
+          <span class="tech-chip">Image Preprocessing</span>
+        </div>
+        <div class="proj-divider"></div>
+        <ul class="proj-points">
+          <li>Deep learning system classifying knee osteoarthritis severity from medical X-ray images.</li>
+          <li>Applied image preprocessing, feature extraction, and CNN/MobileViT models to maximise prediction accuracy.</li>
+          <li>Designed as a prototype AI solution assisting healthcare professionals with automated diagnosis workflows.</li>
+          <li>Evaluated and optimised model performance for improved accuracy and real-world efficiency.</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Project 2 -->
+    <div class="proj-card card-2">
+      <div class="proj-inner">
+        <div class="proj-meta">
+          <div>
+            <div class="proj-num" style="color:var(--gold);">PROJECT_02</div>
+            <div class="proj-title">CivicRoute — Intelligent Civic Complaint Router</div>
+          </div>
+          <a href="https://github.com/Prart-hana/Civic_complaint_router" target="_blank" class="proj-gh" style="color:var(--glt); border-color:rgba(202,138,4,0.35);">
+            <i class="fab fa-github"></i> view repo
+          </a>
+        </div>
+        <div class="proj-tech">
+          <span class="tech-chip">JavaScript</span>
+          <span class="tech-chip">HTML/CSS</span>
+          <span class="tech-chip">Rule-based NLP</span>
+          <span class="tech-chip">Analytics Dashboard</span>
+        </div>
+        <div class="proj-divider" style="background:linear-gradient(90deg,rgba(202,138,4,0.25),transparent);"></div>
+        <ul class="proj-points" style="">
+          <li>Civic issue reporting platform that auto-analyses and categorises complaints using rule-based NLP.</li>
+          <li>Priority detection algorithms identifying urgent civic problems and estimating resolution timelines.</li>
+          <li>Smart routing maps complaints to the correct government department automatically.</li>
+          <li>Analytics dashboard visualising complaint distribution, trends, and system activity in real time.</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.style.opacity = '1';
+        e.target.style.transform = 'translateX(0)';
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.proj-card').forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateX(-20px)';
+    el.style.transition = 'opacity 0.55s ease, transform 0.55s ease, border-color 0.3s';
+    observer.observe(el);
+  });
+</script>
+
+<script src="photo-setup.js"></script>
 </body>
 </html>

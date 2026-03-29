@@ -1,93 +1,260 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Resume</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <style>
-        header {
-            margin: 0;
-            font-size: 40px; 
-            text-align: center;
-            padding: 20px 0; 
-            background-color:  hsl(0, 2%, 73%);
-            color:  #570909c6;
-            background-size: cover;
-            background-position: center;font-size: 40px;
-            margin-bottom: 150px;
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact | Prarthana</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
 
-        }
-        body{
-            background-image:radial-gradient(hsla(0, 59%, 29%, 0.604), rgb(0, 0, 0));
-            width:100%;height:100%;
-            color: beige;
-        }
-        .container {
-            max-width: 615px;
-            margin: 0 auto;
-            text-align: center;
-            text-decoration: none;
-            
-        }
-        .contact-item{
-            padding: 20px ;
-            background-color: #030303b6;
-            width:600px;
-            border-radius: 8px;
-            font-size: 30px;
-            align-items: center;
-            text-align: center;
-           
-        }
-        
+    :root {
+      --gold:  #ca8a04;
+      --glt:   #e5c882;
+      --red:   #6b0f0f;
+      --beige: #f0ebe0;
+      --dim:   rgba(240,235,224,0.55);
+      --max:   640px;
+    }
 
-        .link {
-            text-decoration: none;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction:column;
-            gap: 10px; 
-        }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
 
-        .Contact-in li {
-            list-style-type: none;
-           
-        }
-        .Contact-in img{
-            background-position:fixed;
-        }
+    body {
+      font-family: 'Poppins', sans-serif;
+      min-height: 100vh;
+      color: var(--beige);
+      /* Distinct: blue-tinted dark — cool, professional, minimal */
+      background:
+        radial-gradient(ellipse 100% 70% at 50% 0%, rgba(20,40,120,0.22) 0%, transparent 60%),
+        radial-gradient(ellipse 70% 50% at 100% 100%, rgba(107,15,15,0.12) 0%, transparent 55%),
+        linear-gradient(160deg, #030508 0%, #04060e 50%, #060308 100%);
+      display: flex; flex-direction: column;
+    }
 
-        .link a {
-            transition: all 0.3s ease;
-            text-decoration: none;
-            color:beige;
-            font-size: 40px;
-        }
+    /* ─── NAV ─── */
+    nav {
+      position: fixed; top: 0; width: 100%; z-index: 99;
+      background: rgba(3,5,12,0.92);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(60,80,200,0.18);
+    }
+    .nav__content {
+      max-width: 1100px; margin: auto;
+      padding: 1rem 2rem;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .logo a {
+      font-size: 1.5rem; font-weight: 800;
+      background: linear-gradient(135deg, var(--beige) 30%, #7090ff);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      text-decoration: none; letter-spacing: 1px;
+    }
+    .nav-avatar {
+      width: 34px; height: 34px; border-radius: 50%;
+      border: 2px solid #7090ff; overflow: hidden; flex-shrink: 0;
+      background: #0d1120;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.6rem; font-weight: 800; color: #a0b4ff;
+    }
+    .nav-avatar img { width:100%; height:100%; object-fit:cover; object-position:top; }
+    nav ul { display: flex; gap: 0.3rem; list-style: none; }
+    nav ul li a {
+      text-decoration: none; color: var(--dim);
+      font-size: 0.84rem; font-weight: 500;
+      padding: 0.42rem 1rem; border-radius: 20px;
+      border: 1px solid transparent; transition: 0.25s;
+    }
+    nav ul li a:hover, nav ul li a.active {
+      color: #a0b4ff; border-color: rgba(100,130,255,0.35);
+      background: rgba(80,100,255,0.07);
+    }
 
-        .link a:hover {
-            color: #007bff; 
-        }
-    </style>
+    /* ─── HERO AREA ─── */
+    .contact-hero {
+      max-width: var(--max); margin: 0 auto;
+      padding: 130px 1.5rem 0;
+      text-align: center;
+    }
+
+    .status-pill {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: rgba(20,80,20,0.3); border: 1px solid rgba(80,200,80,0.3);
+      color: #88e088; font-size: 0.73rem; font-weight: 600;
+      padding: 0.35rem 1rem; border-radius: 20px;
+      letter-spacing: 0.5px; margin-bottom: 1.5rem;
+    }
+    .status-pill::before {
+      content: ''; width: 7px; height: 7px; border-radius: 50%;
+      background: #4caf50; box-shadow: 0 0 8px #4caf50;
+      animation: pulse 1.5s infinite;
+    }
+    @keyframes pulse { 0%,100%{opacity:1;} 50%{opacity:0.35;} }
+
+    .contact-hero h1 {
+      font-size: 2.8rem; font-weight: 800; line-height: 1.1;
+      color: var(--beige); margin-bottom: 0.8rem;
+    }
+    .contact-hero h1 span {
+      background: linear-gradient(135deg, #7090ff, #a0b4ff);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    .contact-hero p {
+      font-size: 0.95rem; color: var(--dim); line-height: 1.8;
+      max-width: 440px; margin: 0 auto 2.5rem;
+    }
+
+    /* ─── CONTACT CARDS ─── */
+    .contact-grid {
+      max-width: var(--max); margin: 0 auto;
+      padding: 0 1.5rem 4rem;
+      display: flex; flex-direction: column; gap: 0.9rem;
+    }
+
+    .clink {
+      display: flex; align-items: center; gap: 1.2rem;
+      background: rgba(10,12,25,0.7);
+      border: 1px solid rgba(60,80,200,0.18);
+      border-radius: 12px; padding: 1.1rem 1.4rem;
+      text-decoration: none; color: var(--beige);
+      transition: 0.3s; position: relative; overflow: hidden;
+    }
+    .clink::after {
+      content: '';
+      position: absolute; left: 0; top: 0; bottom: 0; width: 3px;
+      background: linear-gradient(180deg, var(--gold), transparent);
+      transform: scaleY(0); transform-origin: top;
+      transition: transform 0.3s;
+    }
+    .clink:hover { border-color: rgba(202,138,4,0.4); transform: translateX(6px); }
+    .clink:hover::after { transform: scaleY(1); }
+
+    .clink-icon {
+      width: 46px; height: 46px; border-radius: 10px; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.2rem; transition: 0.3s;
+    }
+    .clink:hover .clink-icon { transform: scale(1.1); }
+
+    .icon-phone    { background: linear-gradient(135deg,#1a3a2a,#0d2018); color: #4caf50; border: 1px solid rgba(76,175,80,0.25); }
+    .icon-email    { background: linear-gradient(135deg,#2a1a1a,#1a0d0d); color: var(--glt); border: 1px solid rgba(202,138,4,0.25); }
+    .icon-linkedin { background: linear-gradient(135deg,#0d1e2e,#091522); color: #60a5fa; border: 1px solid rgba(96,165,250,0.25); }
+    .icon-github   { background: linear-gradient(135deg,#1a1a2e,#11112a); color: #c084fc; border: 1px solid rgba(192,132,252,0.25); }
+
+    .clink-label { font-size: 0.7rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--dim); }
+    .clink-value { font-size: 0.93rem; font-weight: 600; color: var(--beige); }
+
+    .clink-arrow {
+      margin-left: auto; color: var(--dim); font-size: 0.85rem;
+      transition: transform 0.3s;
+    }
+    .clink:hover .clink-arrow { transform: translateX(4px); color: var(--gold); }
+
+    /* ─── FOOTER NOTE ─── */
+    .contact-note {
+      text-align: center; padding: 0 1.5rem 3rem;
+      font-size: 0.8rem; color: rgba(240,235,224,0.3);
+    }
+
+    @media (max-width: 500px) {
+      .contact-hero h1 { font-size: 2rem; }
+      .clink-value { font-size: 0.82rem; }
+    }
+  </style>
 </head>
 <body>
-    
-    <header style="font-size: 40px; font-weight: bold;text-transform:uppercase;">Contact-Information
-    
-    </header>
-    <div class="container">
-        <div class="contact-item">
-        <div class="link">
-            <ul class="Contact-in">
-                <li><a href="tel:8220019722"><i class="fas fa-phone"></i> 8220019722</a></li>
-                <li><a href="mailto:prarthanabalar@gmail.com"><i class="fas fa-envelope"></i> prarthanabalar@gmail.com</a></li>
-                <li><a href="https://www.linkedin.com/in/prarthana-balar-b5637425a/"><i class="fab fa-linkedin"></i> LinkedIn Profile</a></li>
-                <li><a href="https://github.com/prarthanabalar"><i class="fab fa-github"></i> GitHub Profile</a></li>
-                <li><a href="https://www.hackerrank.com/profile/prarthanabalar"><i class="fab fa-hackerrank"></i> HackerRank Profile</a></li>
-            </ul>
-        </div>
-        </div>
+
+<nav>
+  <div class="nav__content">
+    <div style="display:flex;align-items:center;gap:0.75rem;">
+      <div class="nav-avatar">
+        <img src="prarthana.jpg" alt="P"
+             onerror="this.style.display='none';this.parentElement.textContent='PB';" />
+      </div>
+      <div class="logo"><a href="porttt.html">Pratzz!</a></div>
     </div>
+    <ul>
+      <li><a href="home.html">About</a></li>
+      <li><a href="porttt.html#experience">Experience</a></li>
+      <li><a href="project.html">Projects</a></li>
+      <li><a href="Contact-info.html" class="active">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- Hero -->
+<div class="contact-hero">
+  <div class="status-pill">Available for opportunities</div>
+  <h1>Let's <span>Connect</span></h1>
+  <p>
+    I'm open to exciting AI/ML roles, collaborations, and new opportunities.
+    Don't hesitate to reach out — I'd love to hear from you!
+  </p>
+</div>
+
+<!-- Contact Links -->
+<div class="contact-grid">
+
+  <a href="tel:8220019722" class="clink">
+    <div class="clink-icon icon-phone"><i class="fas fa-phone"></i></div>
+    <div>
+      <div class="clink-label">Phone</div>
+      <div class="clink-value">+91 82200 19722</div>
+    </div>
+    <div class="clink-arrow"><i class="fas fa-arrow-right"></i></div>
+  </a>
+
+  <a href="mailto:prarthana@gmail.com" class="clink">
+    <div class="clink-icon icon-email"><i class="fas fa-envelope"></i></div>
+    <div>
+      <div class="clink-label">Email</div>
+      <div class="clink-value">prarthana@gmail.com</div>
+    </div>
+    <div class="clink-arrow"><i class="fas fa-arrow-right"></i></div>
+  </a>
+
+  <a href="https://www.linkedin.com/in/prarthana-/" target="_blank" class="clink">
+    <div class="clink-icon icon-linkedin"><i class="fab fa-linkedin-in"></i></div>
+    <div>
+      <div class="clink-label">LinkedIn</div>
+      <div class="clink-value">linkedin.com/in/prarthana-</div>
+    </div>
+    <div class="clink-arrow"><i class="fas fa-arrow-right"></i></div>
+  </a>
+
+  <a href="https://github.com/Prart-hana" target="_blank" class="clink">
+    <div class="clink-icon icon-github"><i class="fab fa-github"></i></div>
+    <div>
+      <div class="clink-label">GitHub</div>
+      <div class="clink-value">github.com/Prart-hana</div>
+    </div>
+    <div class="clink-arrow"><i class="fas fa-arrow-right"></i></div>
+  </a>
+
+</div>
+
+<div class="contact-note">
+  Based in Tamil Nadu, India &nbsp;·&nbsp; Open to remote &amp; hybrid opportunities
+</div>
+
+<script>
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.style.opacity = '1';
+        e.target.style.transform = 'translateX(0)';
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.clink').forEach((el, i) => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateX(-16px)';
+    el.style.transition = `opacity 0.45s ease ${i * 0.08}s, transform 0.45s ease ${i * 0.08}s, border-color 0.3s, background 0.3s`;
+    observer.observe(el);
+  });
+</script>
+
+<script src="photo-setup.js"></script>
 </body>
 </html>
